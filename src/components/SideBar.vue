@@ -21,7 +21,7 @@
         <div class="row">
           <h4 class="col-md-8">{{ player.name }}</h4>
           <button class="btn btn-info col-md-3" @click="viewTeam(player)">View Team</button>
-          <button class="btn btn-danger col-md-1" @click="removePlayer(player)">X</button>
+          <button class="btn btn-danger col-md-1" v-if="!drafting" @click="removePlayer(player)">X</button>
         </div>
       </li>
     </ul>
