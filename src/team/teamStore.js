@@ -4,7 +4,11 @@ const state = {
     all: []
 };
 
-const getters = {};
+const getters = {
+    getAllTeams: state => {
+        return state.all;
+    }
+};
 
 const actions = {
     fetchTeams({ commit }) {

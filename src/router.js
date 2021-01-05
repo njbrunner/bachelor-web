@@ -4,8 +4,8 @@ import VueRouter from 'vue-router';
 import store from './store';
 import Home from './components/Home.vue';
 import Admin from './components/Admin.vue';
-import Login from './components/Login.vue';
-import TeamStandings from './components/TeamStandings.vue';
+import Login from './auth/components/Login';
+import TeamStandings from './team/components/TeamStandings';
 
 Vue.use(VueRouter);
 

@@ -61,8 +61,8 @@
 <script>
 // import axios from 'axios';
 
-import ContestantCard from './ContestantCard.vue';
-import ContestantModal from './ContestantModal.vue';
+import ContestantCard from '../contestant/components/ContestantCard';
+import ContestantModal from '../contestant/components/ContestantModal';
 
 export default {
   name: "Home",
@@ -169,7 +169,7 @@ export default {
     //   return this.players[this.currentDraftPosition];
     // },
     contestants() {
-      return this.$store.state.contestants.all;
+      return this.$store.getters.getAllContestants;
     }
   }
 };

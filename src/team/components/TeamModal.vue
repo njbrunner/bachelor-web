@@ -8,7 +8,7 @@
                             <h5>{{team.name}}</h5>
                             <button type="button" class="close" @click="closeModal">
                                 <span aria-hidden="true">&times;</span>
-                            </button> 
+                            </button>
                         </div>
                         <div class="modal-body">
                             <h5>Team</h5>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import ContestantCard from './ContestantCard.vue';
+import ContestantCard from '../../contestant/components/ContestantCard';
 
 export default {
     name: "TeamModal",

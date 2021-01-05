@@ -45,9 +45,9 @@
     </div>
   </div> -->
 
-  <!-- <b-modal 
+  <!-- <b-modal
     ref="team-modal"
-    hide-footer 
+    hide-footer
     :title=clickedTeam.name
     size="lg">
     <div v-if="clickedTeam">
@@ -86,7 +86,7 @@ export default {
       return teams.sort(this.compare);
     },
     teams() {
-      return this.$store.state.teams.all;
+      return this.$store.getters.getAllTeams;
     },
   },
   methods: {

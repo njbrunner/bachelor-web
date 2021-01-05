@@ -4,7 +4,11 @@ const state = {
     all: []
 };
 
-const getters = {};
+const getters = {
+    getAllContestants: state => {
+        return state.all;
+    }
+};
 
 const actions = {
     fetchContestants({ commit }) {
@@ -41,6 +45,15 @@ const mutations = {
         state.all = contestants;
     }
 };
+
+// const test = {
+//     state,
+//     getters,
+//     actions,
+//     mutations
+// };
+
+// export default test;
 
 export default {
     state,

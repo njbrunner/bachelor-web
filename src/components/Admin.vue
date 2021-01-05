@@ -29,7 +29,7 @@
   </div>
 </template>
 <script>
-import {mapState} from 'vuex';
+// import {mapState} from 'vuex';
 
 export default {
     name: 'Admin',
@@ -38,9 +38,11 @@ export default {
             this.$store.dispatch('disableContestant', contestant._id);
         },
     },
-    computed: mapState({
-        contestants: state => state.contestants.all
-    }),
+    computed: {
+        contestants() {
+            return this.$store.getters.getAllContestants;
+        }
+    },
     created() {
         this.$store.dispatch('fetchContestants');
     },
