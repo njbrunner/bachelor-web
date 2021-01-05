@@ -22,6 +22,27 @@ const actions = {
         .catch(error => {
             console.log(error); // eslint-disable-line no-console
         });
+    },
+    updateTeams({ commit }, teams) {
+        commit('updateTeams', teams);
+    },
+    addTeam({ dispatch }, teamName) {
+        axios.post('https://bachelor-draft.herokuapp.com/player/new', {"name": teamName})
+        .then(() => {
+            dispatch('fetchTeams');
+        })
+        .catch(error => {
+            console.log(error); // eslint-disable-line no-console
+        });
+    },
+    removeTeam({ dispatch}, teamId) {
+        axios.delete('https://bachelor-draft.herokuapp.com/player/remove/' + teamId)
+        .then(() => {
+            dispatch('fetchTeams');
+        })
+        .catch(error => {
+            console.log(error); // eslint-disable-line no-console
+        });
     }
 };
 

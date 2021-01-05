@@ -6,6 +6,7 @@ import Home from './components/Home.vue';
 import Admin from './components/Admin.vue';
 import Login from './auth/components/Login';
 import TeamStandings from './team/components/TeamStandings';
+import Draft from './draft/components/Draft';
 
 Vue.use(VueRouter);
 
@@ -14,6 +15,7 @@ const routes = [
     { path: '/standings', component: TeamStandings},
     { path: '/admin', component: Admin },
     { path: '/login', component: Login },
+    { path: '/draft', component: Draft },
     { path: '*', redirect: Home }
 ];
 
@@ -26,6 +28,11 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     store.dispatch('fetchAccessToken');
     if (to.fullPath === '/admin') {
+      if (!store.getters.isAuthorized) {
+        next('/login');
+      }
+    }
+    if (to.fullPath === '/draft') {
       if (!store.getters.isAuthorized) {
         next('/login');
       }
