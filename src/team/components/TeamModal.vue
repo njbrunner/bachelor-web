@@ -43,9 +43,6 @@ export default {
             this.$emit('closeModal');
         }
     },
-    created() {
-        console.log(this.team); //eslint-disable-line no-console
-    }
 }
 </script>
 

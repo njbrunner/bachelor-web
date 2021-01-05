@@ -29,7 +29,7 @@
 
 <script>
 import Sidebar from "./SideBar";
-import AddTeamModal from "./AddTeamModal";
+import AddTeamModal from "../../team/components/AddTeamModal";
 import TeamModal from "../../team/components/TeamModal";
 import _ from "lodash";
 
@@ -69,7 +69,7 @@ export default {
     },
     handleSaveNewTeam(teamName) {
       this.$store.dispatch("addTeam", teamName);
-      this.handleCloseAddTeamModal();
+      this.handleCloseModal();
     },
     handleRemoveTeam(teamId) {
       this.$store.dispatch("removeTeam", teamId);
