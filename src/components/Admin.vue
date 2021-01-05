@@ -1,53 +1,56 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-        <div class="row">
-            <div col-md-4 v-for="(contestant, index) in contestants" :key="index">
-                <a>
-                    <b-card
-                    :title="contestant.name"
-                    :img-src="contestant.image"
-                    img-top
-                    tag="article"
-                    style="width: 300px;"
-                    class="mb-2 styled-card"
-                    disabled>
-                    <b-card-text>
-                        {{ contestant.age }}
-                        <br />
-                        {{ contestant.occupation }}
-                        <br />
-                        {{ contestant.location }}
-                    </b-card-text>
-                    <button class="btn btn-danger form-control" @click="noRose(contestant)">No Rose</button>
-                    <div v-if="!contestant.active" class="notActive"></div>
-                    </b-card>
-                </a>
-            </div>
-        </div>
+      <contestant-card-admin
+        v-for="(contestant, index) in contestants"
+        :key="index"
+        :contestant="contestant"
+        @contestantClicked="handleContestantClicked(contestant)"
+      ></contestant-card-admin>
     </div>
+    <contestant-modal
+      v-if="showContestantModal"
+      :contestant="clickedContestant"
+      @closeModal="handleCloseContestantModalClicked"
+    ></contestant-modal>
   </div>
 </template>
 <script>
-// import {mapState} from 'vuex';
+import ContestantCardAdmin from "../contestant/components/ContestantCardAdmin";
+import ContestantModal from "../contestant/components/ContestantModal";
 
 export default {
-    name: 'Admin',
-    methods: {
-        noRose(contestant) {
-            this.$store.dispatch('disableContestant', contestant._id);
-        },
+  name: "Admin",
+  components: {
+    ContestantCardAdmin,
+    ContestantModal,
+  },
+  data() {
+    return {
+      clickedContestant: {},
+      showContestantModal: false,
+    };
+  },
+  methods: {
+    noRose(contestant) {
+      this.$store.dispatch("disableContestant", contestant._id);
     },
-    computed: {
-        contestants() {
-            return this.$store.getters.getAllContestants;
-        }
+    handleContestantClicked(contestant) {
+      this.clickedContestant = contestant;
+      this.showContestantModal = true;
     },
-    created() {
-        this.$store.dispatch('fetchContestants');
+    handleCloseContestantModalClicked() {
+      this.showContestantModal = false;
     },
+  },
+  computed: {
+    contestants() {
+      return this.$store.getters.getAllContestants;
+    },
+  },
+  created() {
+    this.$store.dispatch("fetchContestants");
+  },
 };
 </script>
-<style>
-
-</style>
+<style></style>
