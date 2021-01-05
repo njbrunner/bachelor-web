@@ -9,32 +9,42 @@
           :players="teams"
           @onRemoveTeam="handleRemoveTeam"
           @onShuffleTeams="shuffleTeams"
+          @onViewTeam="handleViewTeamClicked"
         >
         </sidebar>
       </div>
     </div>
     <add-team-modal
       v-if="showAddTeamModal"
-      @closeModal="handleCloseAddTeamModal"
+      @closeModal="handleCloseModal"
       @saveNewTeam="handleSaveNewTeam"
     ></add-team-modal>
+    <team-modal
+      v-if="showTeamModal"
+      :team="clickedTeam"
+      @closeModal="handleCloseModal"
+    ></team-modal>
   </div>
 </template>
 
 <script>
 import Sidebar from "./SideBar";
 import AddTeamModal from "./AddTeamModal";
-import _ from 'lodash';
+import TeamModal from "../../team/components/TeamModal";
+import _ from "lodash";
 
 export default {
   name: "Draft",
   components: {
     Sidebar,
     AddTeamModal,
+    TeamModal,
   },
   data() {
     return {
       showAddTeamModal: false,
+      showTeamModal: false,
+      clickedTeam: undefined,
     };
   },
   computed: {
@@ -49,8 +59,13 @@ export default {
     handleAddTeamClicked() {
       this.showAddTeamModal = true;
     },
-    handleCloseAddTeamModal() {
+    handleViewTeamClicked(team) {
+      this.clickedTeam = team;
+      this.showTeamModal = true;
+    },
+    handleCloseModal() {
       this.showAddTeamModal = false;
+      this.showTeamModal = false;
     },
     handleSaveNewTeam(teamName) {
       this.$store.dispatch("addTeam", teamName);
@@ -61,7 +76,7 @@ export default {
     },
     shuffleTeams() {
       let shuffledTeams = _.shuffle(this.teams);
-      this.$store.dispatch('updateTeams', shuffledTeams);
+      this.$store.dispatch("updateTeams", shuffledTeams);
     },
   },
   created() {

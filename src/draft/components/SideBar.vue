@@ -78,7 +78,7 @@ export default {
       this.$emit("onAddTeamClicked");
     },
     viewTeam(player) {
-      this.$emit("viewTeam", player);
+      this.$emit("onViewTeam", player);
     },
     shuffle() {
       this.players = _.shuffle(this.players);
