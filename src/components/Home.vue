@@ -8,10 +8,10 @@
     <!-- <div class="row"> -->
       <!-- <div class="col-md-9 scroll-pane"> -->
     <div class="row">
-      <contestant-card 
+      <contestant-card
         v-for="(contestant, index) in contestants"
-        :key="index" 
-        :contestant="contestant" 
+        :key="index"
+        :contestant="contestant"
         @contestantClicked="handleContestantClicked(contestant)"
       ></contestant-card>
     </div>
@@ -20,9 +20,9 @@
         <SideBar :drafting="drafting" :currentDraftPosition="currentDraftPosition" @viewTeam="showTeam" @updatePlayers="updatePlayers"></SideBar>
       </div> -->
     <!-- </div> -->
-    <!-- <b-modal 
-      ref="contestant-modal" 
-      hide-footer 
+    <!-- <b-modal
+      ref="contestant-modal"
+      hide-footer
       :title=clickedContestant.name
       size="lg">
       <div class="row">
@@ -38,9 +38,9 @@
       </div>
       <p class="styled-paragraph">{{clickedContestant.detail}}</p>
     </b-modal> -->
-    <!-- <b-modal 
-      ref="team-modal" 
-      hide-footer 
+    <!-- <b-modal
+      ref="team-modal"
+      hide-footer
       :title=clickedTeam.name
       size="lg">
       <h5>Team</h5>
@@ -50,7 +50,7 @@
       </ul>
 
     </b-modal> -->
-    <contestant-modal 
+    <contestant-modal
       v-if="showContestantModal"
       :contestant="clickedContestant"
       @closeModal="handleCloseContestantModalClicked"
@@ -88,7 +88,6 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch('logout');
     this.loadContestants();
   },
   methods: {

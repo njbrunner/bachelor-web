@@ -5,7 +5,11 @@ const state = {
     bachelorToken: null,
 };
 
-const getters = {};
+const getters = {
+  isAuthorized: state => {
+    return !!state.bachelorToken;
+  }
+};
 
 const actions = {
     doLogin({ commit }, password) {

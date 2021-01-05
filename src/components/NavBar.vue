@@ -4,8 +4,9 @@
 
         <div class="navbar-nav ml-auto">
             <router-link href="#" class="nav-item nav-link" to="/standings">Standings</router-link>
-            <router-link href="#" v-if="!authorized" class="nav-link" to="/admin">Admin</router-link>
-            <a v-else class="nav-link" @click="logout">Logout</a>
+            <a class="nav-item nav-link" href="" v-if="authorized">Draft</a>
+            <router-link href="#" class="nav-link" to="/admin">Admin</router-link>
+            <a href="" v-if="authorized" class="nav-link" @click="logout">Logout</a>
         </div>
 
     </nav>
@@ -15,7 +16,7 @@ export default {
     name: 'NavBar',
     computed: {
         authorized() {
-            return this.$store.state.bachelorToken;
+            return this.$store.getters.isAuthorized;
         }
     },
     methods: {

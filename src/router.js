@@ -26,12 +26,12 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     store.dispatch('fetchAccessToken');
     if (to.fullPath === '/admin') {
-      if (!store.state.bachelorToken) {
+      if (!store.getters.isAuthorized) {
         next('/login');
       }
     }
     if (to.fullPath === '/login') {
-      if (store.state.bachelorToken) {
+      if (store.getters.isAuthorized) {
         next('/admin');
       }
     }
