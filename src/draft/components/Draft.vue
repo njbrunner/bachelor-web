@@ -5,11 +5,14 @@
       <div class="col-md-9"></div>
       <div class="col-md-3">
         <sidebar
-          @onAddTeamClicked="handleAddTeamClicked"
           :players="teams"
+          :isDrafting="isDrafting"
+          @onAddTeamClicked="handleAddTeamClicked"
           @onRemoveTeam="handleRemoveTeam"
           @onShuffleTeams="shuffleTeams"
           @onViewTeam="handleViewTeamClicked"
+          @onStartDraft="handleStartDraft"
+          @onEndDraft="handleEndDraft"
         >
         </sidebar>
       </div>
@@ -45,6 +48,7 @@ export default {
       showAddTeamModal: false,
       showTeamModal: false,
       clickedTeam: undefined,
+      isDrafting: false,
     };
   },
   computed: {
@@ -77,6 +81,12 @@ export default {
     shuffleTeams() {
       let shuffledTeams = _.shuffle(this.teams);
       this.$store.dispatch("updateTeams", shuffledTeams);
+    },
+    handleStartDraft() {
+      this.isDrafting = true;
+    },
+    handleEndDraft() {
+      this.isDrafting = false;
     },
   },
   created() {

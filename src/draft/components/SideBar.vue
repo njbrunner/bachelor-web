@@ -1,13 +1,34 @@
 <template>
   <div>
     <div class="well">
-      <button class="btn btn-info form-control" @click="addTeamClicked">
+      <button
+        :disabled="isDrafting"
+        class="btn btn-info form-control"
+        @click="addTeamClicked"
+      >
         Add Team
       </button>
-      <button class="btn btn-warning form-control" @click="shuffleTeams">
+      <button
+        :disabled="isDrafting"
+        class="btn btn-warning form-control"
+        @click="shuffleTeams"
+      >
         Shuffle Teams
       </button>
-      <button class="btn btn-danger form-control">Start Draft</button>
+      <button
+        v-if="!isDrafting"
+        class="btn btn-danger form-control"
+        @click="startDraft"
+      >
+        Start Draft
+      </button>
+      <button
+        v-if="isDrafting"
+        class="btn btn-danger form-control"
+        @click="endDraft"
+      >
+        End Draft
+      </button>
     </div>
     <!-- <AddPlayer v-if="!drafting" @newPlayer="getPlayers"></AddPlayer> -->
     <br />
@@ -35,7 +56,7 @@
           <!-- <p class="col-md-1">{{ getTeamPoints(player) }}</p> -->
           <button
             class="btn btn-danger col-md-1"
-            v-if="!drafting"
+            :disabled="isDrafting"
             @click="removePlayer(player)"
           >
             X
@@ -66,7 +87,7 @@ import _ from "lodash";
 export default {
   name: "SideBar",
   components: {},
-  props: ["drafting", "currentDraftPosition", "players"],
+  props: ["drafting", "currentDraftPosition", "players", "isDrafting"],
   computed: {
     sortedPlayers() {
       const players = this.players.slice();
@@ -97,6 +118,12 @@ export default {
     },
     shuffleTeams() {
       this.$emit("onShuffleTeams");
+    },
+    startDraft() {
+      this.$emit("onStartDraft");
+    },
+    endDraft() {
+      this.$emit("onEndDraft");
     },
   },
 };
