@@ -1,45 +1,45 @@
 <template>
   <div>
-    <div class="well">
-      <button
-        :disabled="isDrafting"
-        class="btn btn-info form-control"
-        @click="addTeamClicked"
-      >
-        Add Team
-      </button>
-      <button
-        :disabled="isDrafting"
-        class="btn btn-warning form-control"
-        @click="shuffleTeams"
-      >
-        Shuffle Teams
-      </button>
-      <button
-        v-if="!isDrafting"
-        class="btn btn-danger form-control"
-        @click="startDraft"
-      >
-        Start Draft
-      </button>
-      <button
-        v-if="isDrafting"
-        class="btn btn-danger form-control"
-        @click="endDraft"
-      >
-        End Draft
-      </button>
+    <div class="draft-control">
+      <div class="row">
+        <div class="col-md-4">
+          <button
+            :disabled="isDrafting"
+            class="btn btn-outline-primary draft-control-button"
+            @click="addTeamClicked"
+          >
+            Add Team
+          </button>
+        </div>
+        <div class="col-md-4">
+          <button
+            :disabled="isDrafting"
+            class="btn btn-outline-primary draft-control-button"
+            @click="shuffleTeams"
+          >
+            Shuffle Teams
+          </button>
+        </div>
+        <div class="col-md-4">
+          <button
+            v-if="!isDrafting"
+            class="btn btn-primary draft-control-button"
+            @click="startDraft"
+          >
+            Start Draft
+          </button>
+          <button
+            v-if="isDrafting"
+            class="btn btn-primary draft-control-button"
+            @click="endDraft"
+          >
+            End Draft
+          </button>
+        </div>
+      </div>
     </div>
-    <!-- <AddPlayer v-if="!drafting" @newPlayer="getPlayers"></AddPlayer> -->
     <br />
-    <div class="row">
-      <h3>Teams</h3>
-      <!-- <button
-        class="btn btn-warning styled-shuffle-button"
-        v-if="!drafting"
-        @click="shuffle(players)"
-      >Shuffle</button> -->
-    </div>
+    <h3>Teams</h3>
     <hr />
     <ul class="list-group">
       <li
@@ -48,37 +48,21 @@
         v-for="(player, index) in players"
         :key="index"
       >
-        <div class="row">
-          <h4 class="col-md-8">{{ player.name }}</h4>
-          <button class="btn btn-info col-md-3" @click="viewTeam(player)">
+        <div class="flex-container">
+          <h4 style="flex-grow: 8">{{ player.name }}</h4>
+          <button class="btn btn-primary" @click="viewTeam(player)">
             View Team
           </button>
-          <!-- <p class="col-md-1">{{ getTeamPoints(player) }}</p> -->
           <button
-            class="btn btn-danger col-md-1"
-            :disabled="isDrafting"
+            class="btn btn-outline-primary"
+            v-if="!isDrafting"
             @click="removePlayer(player)"
           >
-            X
+            <i class="material-icons">delete_outline</i>
           </button>
         </div>
       </li>
     </ul>
-    <!-- <div v-if="players">
-      <h3>Standings</h3>
-      <hr />
-      <ul class="list-group">
-        <li
-          class="list-group-item"
-          v-for="(player, index) in sortedPlayers"
-          :key="index">
-          <div class="row">
-            <h4 class="col-md-11">{{ player.name }}</h4>
-            <p class="col-md-12">{{ getTeamPoints(player) }}</p>
-          </div>
-        </li>
-      </ul>
-    </div> -->
   </div>
 </template>
 <script>
@@ -106,7 +90,7 @@ export default {
       this.$emit("updatePlayers", this.players);
     },
     isActive(index) {
-      if (this.drafting) {
+      if (this.isDrafting) {
         if (this.currentDraftPosition == index) {
           return true;
         }
@@ -129,15 +113,27 @@ export default {
 };
 </script>
 <style>
-.styled-shuffle-button {
-  color: white !important;
-  position: absolute;
-  right: 0;
-  margin-right: 15px;
-}
-.well {
-  background: lightgrey;
+.draft-control {
+  background-color: lightgrey;
   padding: 16px;
+  border: 1px solid var(--primary);
   border-radius: 10px;
+}
+.draft-control-button {
+  height: 100%;
+  width: 100%;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
 </style>

@@ -35,10 +35,19 @@ const actions = {
             console.log(error); // eslint-disable-line no-console
         });
     },
-    removeTeam({ dispatch}, teamId) {
+    removeTeam({ dispatch }, teamId) {
         axios.delete('https://bachelor-draft.herokuapp.com/player/remove/' + teamId)
         .then(() => {
             dispatch('fetchTeams');
+        })
+        .catch(error => {
+            console.log(error); // eslint-disable-line no-console
+        });
+    },
+    draftContestant({ commit }, payload) {
+        axios.post('https://bachelor-draft.herokuapp.com/player/draft/' + payload.teamId, {"contestant_id": payload.contestantId})
+        .then(response => {
+            commit('updateTeam', response.data);
         })
         .catch(error => {
             console.log(error); // eslint-disable-line no-console
@@ -49,6 +58,10 @@ const actions = {
 const mutations = {
     updateTeams: (state, teams) => {
         state.all = teams;
+    },
+    updateTeam: (state, updatedTeam) => {
+        const team = state.all.find(item => item._id === updatedTeam._id);
+        Object.assign(team, updatedTeam);
     }
 };
 

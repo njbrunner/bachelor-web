@@ -1,12 +1,23 @@
 <template>
   <div class="container-fluid">
-    <h1>Draft</h1>
     <div class="row">
-      <div class="col-md-9"></div>
+      <div class="col-md-9">
+        <div class="row">
+          <contestant-card-draft
+            v-for="(contestant, index) in contestants"
+            :key="index"
+            :contestant="contestant"
+            :isDrafting="isDrafting"
+            @onContestantClicked="handleContestantClicked(contestant)"
+            @onDraftContestant="handleDraftContestant"
+          ></contestant-card-draft>
+        </div>
+      </div>
       <div class="col-md-3">
         <sidebar
           :players="teams"
           :isDrafting="isDrafting"
+          :currentDraftPosition="currentDraftPosition"
           @onAddTeamClicked="handleAddTeamClicked"
           @onRemoveTeam="handleRemoveTeam"
           @onShuffleTeams="shuffleTeams"
@@ -34,6 +45,7 @@
 import Sidebar from "./SideBar";
 import AddTeamModal from "../../team/components/AddTeamModal";
 import TeamModal from "../../team/components/TeamModal";
+import ContestantCardDraft from "../../contestant/components/ContestantCardDraft";
 import _ from "lodash";
 
 export default {
@@ -42,6 +54,7 @@ export default {
     Sidebar,
     AddTeamModal,
     TeamModal,
+    ContestantCardDraft,
   },
   data() {
     return {
@@ -49,16 +62,31 @@ export default {
       showTeamModal: false,
       clickedTeam: undefined,
       isDrafting: false,
+      currentDraftPosition: 0,
+      reverseOrder: false,
+      endOfLineFirstPick: false,
+      firstPick: true,
+      draftRound: 1,
     };
   },
   computed: {
+    contestants() {
+      console.log("now"); // eslint-disable-line no-console
+      return this.$store.getters.getAllContestants;
+    },
     teams() {
       return this.$store.getters.getAllTeams;
+    },
+    currentDraftPlayer() {
+      return this.teams[this.currentDraftPosition];
     },
   },
   methods: {
     fetchTeams() {
       this.$store.dispatch("fetchTeams");
+    },
+    fetchContestants() {
+      this.$store.dispatch("fetchContestants");
     },
     handleAddTeamClicked() {
       this.showAddTeamModal = true;
@@ -88,8 +116,53 @@ export default {
     handleEndDraft() {
       this.isDrafting = false;
     },
+    handleDraftContestant(contestant) {
+      this.$store.dispatch("draftContestant", {
+        teamId: this.currentDraftPlayer._id,
+        contestantId: contestant._id,
+      });
+      contestant.drafted = true;
+      this.$store.dispatch("updateContestant", contestant);
+      this.movePositions();
+    },
+    movePositions() {
+      if (
+        this.currentDraftPosition == this.teams.length - 1 &&
+        this.reverseOrder == false
+      ) {
+        this.reverseOrder = true;
+        this.draftRound += 1;
+      } else if (this.currentDraftPosition == 0 && this.reverseOrder == true) {
+        this.reverseOrder = false;
+        this.draftRound += 1;
+      }
+      if (this.reverseOrder == false) {
+        if (
+          this.currentDraftPosition == 0 &&
+          this.endOfLineFirstPick == false &&
+          this.firstPick == false
+        ) {
+          this.endOfLineFirstPick = true;
+        } else {
+          this.endOfLineFirstPick = false;
+          this.currentDraftPosition += 1;
+        }
+      } else {
+        if (
+          this.currentDraftPosition == this.teams.length - 1 &&
+          this.endOfLineFirstPick == false
+        ) {
+          this.endOfLineFirstPick = true;
+        } else {
+          this.endOfLineFirstPick = false;
+          this.currentDraftPosition -= 1;
+        }
+      }
+      this.firstPick = false;
+    },
   },
   created() {
+    this.fetchContestants();
     this.fetchTeams();
   },
 };

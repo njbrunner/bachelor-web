@@ -16,7 +16,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import './assets/bachelorTheme.scss';
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -24,5 +26,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.fancy-script {
+  font-family: 'Great Vibes', cursive;
 }
 </style>

@@ -23,6 +23,9 @@ const actions = {
             console.log(error); // eslint-disable-line no-console
         });
     },
+    updateContestant({ commit }, contestant) {
+        commit('updateContestant', contestant);
+    },
     disableContestant({ rootState, dispatch }, contestant_id) {
         axios({
             method: 'post',
@@ -43,17 +46,12 @@ const actions = {
 const mutations = {
     updateContestants: (state, contestants) => {
         state.all = contestants;
+    },
+    updateContestant: (state, updatedContestant) => {
+        const contestant = state.all.find(item => item._id === updatedContestant._id);
+        Object.assign(contestant, updatedContestant);
     }
 };
-
-// const test = {
-//     state,
-//     getters,
-//     actions,
-//     mutations
-// };
-
-// export default test;
 
 export default {
     state,

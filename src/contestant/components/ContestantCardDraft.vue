@@ -1,26 +1,13 @@
 <template>
   <a @click="handleClick">
     <b-card
+      :title="contestant.name"
       :img-src="contestant.image"
       img-top
       tag="article"
       style="width: 300px;"
       class="mb-2 styled-card"
     >
-      <!-- :class="{'drafted': contestant['drafted'] && drafting}"
-    > -->
-      <div class="row">
-        <div class="col-6">
-          <b-card-title>{{
-            contestant.name
-          }}</b-card-title>
-        </div>
-        <div class="col-6" style="text-align: right">
-          <img src="@/assets/rose.png" height="30" />
-          <span class="badge badge-danger">x0</span>
-        </div>
-      </div>
-
       <b-card-text>
         {{ contestant.age }}
         <br />
@@ -28,13 +15,13 @@
         <br />
         {{ contestant.location }}
       </b-card-text>
-
-      <!-- <b-button
-        class="form-control"
-        variant="primary"
-        v-if="drafting && !contestant['drafted']"
-        @click="draftContestant($event, contestant, index)"
-      >Draft</b-button> -->
+      <button
+        v-if="isDrafting && !isContestantDrafted"
+        class="btn btn-primary form-control"
+        @click="draftContestant(contestant)"
+      >
+        Draft
+      </button>
       <div v-if="!contestant.active" class="notActive"></div>
     </b-card>
   </a>
@@ -42,13 +29,23 @@
 
 <script>
 export default {
-  name: "ContestantCard",
+  name: "ContestantCardDraft",
   props: {
     contestant: Object,
+    isDrafting: Boolean,
+  },
+  data() {
+      return {
+          isContestantDrafted: false
+      }
   },
   methods: {
     handleClick() {
-      this.$emit("contestantClicked", this.contestant);
+      this.$emit("oContestantClicked", this.contestant);
+    },
+    draftContestant(contestant) {
+        this.isContestantDrafted = true;
+      this.$emit("onDraftContestant", contestant);
     },
   },
 };
@@ -58,11 +55,6 @@ export default {
 .styled-card {
   margin-left: 10px;
   margin-right: 10px;
-  color: var(--primary);
-}
-
-.contestant-card-name {
-  color: var(--primary);
 }
 
 .notActive {

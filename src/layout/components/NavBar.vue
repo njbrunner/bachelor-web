@@ -1,7 +1,9 @@
 <template>
   <nav class="navbar navbar-expand navbar-light bg-transparent">
-    <router-link class="navbar-brand" to="/">Fantasy Suites</router-link>
-
+    <router-link class="navbar-brand" to="/">
+      <img src="@/assets/rose.png" height="40" />
+      <span class="fancy-script title">Fantasy Suites</span>
+    </router-link>
     <div class="navbar-nav ml-auto">
       <router-link href="#" class="nav-item nav-link" to="/standings"
         >Standings</router-link
@@ -30,4 +32,9 @@ export default {
   },
 };
 </script>
-<style></style>
+<style scoped>
+.title {
+  font-size: 30px;
+  color: var(--primary);
+}
+</style>
