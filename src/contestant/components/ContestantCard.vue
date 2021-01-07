@@ -7,8 +7,6 @@
       style="width: 300px;"
       class="mb-2 styled-card"
     >
-      <!-- :class="{'drafted': contestant['drafted'] && drafting}"
-    > -->
       <div class="row">
         <div class="col-6">
           <b-card-title>{{ contestant.name }}</b-card-title>
@@ -18,7 +16,6 @@
           <span class="badge badge-danger">x {{ contestant.roses }}</span>
         </div>
       </div>
-
       <b-card-text>
         {{ contestant.age }}
         <br />
@@ -26,13 +23,6 @@
         <br />
         {{ contestant.location }}
       </b-card-text>
-
-      <!-- <b-button
-        class="form-control"
-        variant="primary"
-        v-if="drafting && !contestant['drafted']"
-        @click="draftContestant($event, contestant, index)"
-      >Draft</b-button> -->
       <div v-if="!contestant.active" class="notActive"></div>
     </b-card>
   </a>

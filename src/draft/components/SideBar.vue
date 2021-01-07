@@ -107,6 +107,7 @@ export default {
       this.$emit("onEndDraft");
     },
     resetDraft() {
+      this.$emit("onResetDraft");
       this.$store.dispatch("resetDraft");
     },
   },

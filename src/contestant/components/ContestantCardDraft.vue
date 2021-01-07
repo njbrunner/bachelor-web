@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     handleClick() {
-      this.$emit("oContestantClicked", this.contestant);
+      // this.$emit("onContestantClicked", this.contestant);
     },
     draftContestant(contestant) {
       this.$emit("onDraftContestant", contestant);

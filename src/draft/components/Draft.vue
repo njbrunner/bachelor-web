@@ -23,6 +23,7 @@
           @onViewTeam="handleViewTeamClicked"
           @onStartDraft="handleStartDraft"
           @onEndDraft="handleEndDraft"
+          @onResetDraft="handleResetDraft"
         >
         </sidebar>
       </div>
@@ -108,6 +109,13 @@ export default {
     },
     handleEndDraft() {
       this.isDrafting = false;
+    },
+    handleResetDraft() {
+      this.currentDraftPosition = 0;
+      this.reverseOrder = false;
+      this.endOfLineFirstPick = false;
+      this.firstPick = true;
+      this.draftRound = 1;
     },
     handleDraftContestant(contestant) {
       this.$store.dispatch("draftContestant", {

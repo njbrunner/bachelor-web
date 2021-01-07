@@ -28,10 +28,10 @@ const actions = {
     },
     disableContestant({ rootState, dispatch }, contestant_id) {
         axios({
-            method: 'post',
+            method: 'put',
             url: 'https://bachelor-draft.herokuapp.com/contestant/norose/' + contestant_id,
             headers: {
-                Authorization: 'Bearer ' + rootState.auth.bachelorToken
+                Authorization: 'Bearer ' + rootState.authStore.bachelorToken
             }
         })
         .then(() => {

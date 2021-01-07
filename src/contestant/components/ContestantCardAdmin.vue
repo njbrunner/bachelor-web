@@ -15,7 +15,7 @@
         <br />
         {{ contestant.location }}
       </b-card-text>
-      <button class="btn btn-danger form-control" @click="noRose(contestant)">
+      <button class="btn btn-primary form-control" @click="noRose">
         No Rose
       </button>
       <div v-if="!contestant.active" class="notActive"></div>
@@ -31,7 +31,10 @@ export default {
   },
   methods: {
     handleClick() {
-      this.$emit("contestantClicked", this.contestant);
+      // this.$emit("contestantClicked", this.contestant);
+    },
+    noRose() {
+      this.$store.dispatch("disableContestant", this.contestant._id);
     },
   },
 };
