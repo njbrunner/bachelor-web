@@ -16,7 +16,7 @@
         {{ contestant.location }}
       </b-card-text>
       <button
-        v-if="isDrafting && !isContestantDrafted"
+        v-if="isDrafting && !contestant.drafted"
         class="btn btn-primary form-control"
         @click="draftContestant(contestant)"
       >
@@ -34,17 +34,11 @@ export default {
     contestant: Object,
     isDrafting: Boolean,
   },
-  data() {
-      return {
-          isContestantDrafted: false
-      }
-  },
   methods: {
     handleClick() {
       this.$emit("oContestantClicked", this.contestant);
     },
     draftContestant(contestant) {
-        this.isContestantDrafted = true;
       this.$emit("onDraftContestant", contestant);
     },
   },

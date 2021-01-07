@@ -44,11 +44,17 @@ const actions = {
             console.log(error); // eslint-disable-line no-console
         });
     },
-    draftContestant({ commit }, payload) {
-        axios.post('https://bachelor-draft.herokuapp.com/player/draft/' + payload.teamId, {"contestant_id": payload.contestantId})
-        .then(response => {
-            commit('updateTeam', response.data);
+    shuffleTeams({ dispatch }) {
+        axios.put('https://bachelor-draft.herokuapp.com/player/shuffle')
+        .then(() => {
+            dispatch('fetchTeams');
         })
+        .catch(error => {
+            console.log(error); // eslint-disable-line no-console
+        });
+    },
+    draftContestant(_, payload) {
+        axios.put('https://bachelor-draft.herokuapp.com/player/draft/' + payload.teamId, {"contestant_id": payload.contestantId})
         .catch(error => {
             console.log(error); // eslint-disable-line no-console
         });

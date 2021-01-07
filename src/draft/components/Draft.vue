@@ -20,7 +20,6 @@
           :currentDraftPosition="currentDraftPosition"
           @onAddTeamClicked="handleAddTeamClicked"
           @onRemoveTeam="handleRemoveTeam"
-          @onShuffleTeams="shuffleTeams"
           @onViewTeam="handleViewTeamClicked"
           @onStartDraft="handleStartDraft"
           @onEndDraft="handleEndDraft"
@@ -46,7 +45,6 @@ import Sidebar from "./SideBar";
 import AddTeamModal from "../../team/components/AddTeamModal";
 import TeamModal from "../../team/components/TeamModal";
 import ContestantCardDraft from "../../contestant/components/ContestantCardDraft";
-import _ from "lodash";
 
 export default {
   name: "Draft",
@@ -71,7 +69,6 @@ export default {
   },
   computed: {
     contestants() {
-      console.log("now"); // eslint-disable-line no-console
       return this.$store.getters.getAllContestants;
     },
     teams() {
@@ -106,10 +103,6 @@ export default {
     handleRemoveTeam(teamId) {
       this.$store.dispatch("removeTeam", teamId);
     },
-    shuffleTeams() {
-      let shuffledTeams = _.shuffle(this.teams);
-      this.$store.dispatch("updateTeams", shuffledTeams);
-    },
     handleStartDraft() {
       this.isDrafting = true;
     },
@@ -121,8 +114,6 @@ export default {
         teamId: this.currentDraftPlayer._id,
         contestantId: contestant._id,
       });
-      contestant.drafted = true;
-      this.$store.dispatch("updateContestant", contestant);
       this.movePositions();
     },
     movePositions() {

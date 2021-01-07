@@ -66,8 +66,6 @@
   </div>
 </template>
 <script>
-import _ from "lodash";
-
 export default {
   name: "SideBar",
   components: {},
@@ -85,10 +83,6 @@ export default {
     viewTeam(player) {
       this.$emit("onViewTeam", player);
     },
-    shuffle() {
-      this.players = _.shuffle(this.players);
-      this.$emit("updatePlayers", this.players);
-    },
     isActive(index) {
       if (this.isDrafting) {
         if (this.currentDraftPosition == index) {
@@ -101,7 +95,7 @@ export default {
       this.$emit("onRemoveTeam", player._id);
     },
     shuffleTeams() {
-      this.$emit("onShuffleTeams");
+      this.$store.dispatch("shuffleTeams");
     },
     startDraft() {
       this.$emit("onStartDraft");

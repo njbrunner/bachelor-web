@@ -11,13 +11,11 @@
     > -->
       <div class="row">
         <div class="col-6">
-          <b-card-title>{{
-            contestant.name
-          }}</b-card-title>
+          <b-card-title>{{ contestant.name }}</b-card-title>
         </div>
         <div class="col-6" style="text-align: right">
           <img src="@/assets/rose.png" height="30" />
-          <span class="badge badge-danger">x0</span>
+          <span class="badge badge-danger">x {{ contestant.roses }}</span>
         </div>
       </div>
 
