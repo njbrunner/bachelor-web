@@ -40,7 +40,23 @@ const actions = {
         .catch(error => {
             console.log(error); // eslint-disable-line no-console
         });
-    }
+    },
+    resetDraft({ rootState, dispatch }) {
+        axios({
+            method: 'put',
+            url: 'https://bachelor-draft.herokuapp.com/contestant/draft/reset/all',
+            headers: {
+                Authorization: 'Bearer ' + rootState.authStore.bachelorToken
+            }
+        })
+        .then(() => {
+            dispatch('fetchContestants');
+            dispatch('fetchTeams');
+        })
+        .catch(error => {
+            console.log(error); // eslint-disable-line no-console
+        });
+    },
 };
 
 const mutations = {

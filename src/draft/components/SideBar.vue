@@ -38,6 +38,9 @@
         </div>
       </div>
     </div>
+    <button v-if="!isDrafting" class="btn btn-secondary" @click="resetDraft">
+      Reset Draft
+    </button>
     <br />
     <h3>Teams</h3>
     <hr />
@@ -102,6 +105,9 @@ export default {
     },
     endDraft() {
       this.$emit("onEndDraft");
+    },
+    resetDraft() {
+      this.$store.dispatch("resetDraft");
     },
   },
 };

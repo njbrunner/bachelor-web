@@ -53,8 +53,12 @@ const actions = {
             console.log(error); // eslint-disable-line no-console
         });
     },
-    draftContestant(_, payload) {
+    draftContestant({ dispatch }, payload) {
         axios.put('https://bachelor-draft.herokuapp.com/player/draft/' + payload.teamId, {"contestant_id": payload.contestantId})
+        .then(() => {
+            dispatch('fetchContestants');
+            dispatch('fetchTeams');
+        })
         .catch(error => {
             console.log(error); // eslint-disable-line no-console
         });
