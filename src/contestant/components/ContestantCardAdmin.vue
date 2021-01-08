@@ -1,13 +1,23 @@
 <template>
   <a @click="handleClick">
     <b-card
-      :title="contestant.name"
       :img-src="contestant.image"
       img-top
       tag="article"
       style="width: 300px;"
       class="mb-2 styled-card"
     >
+      <div class="row">
+        <div class="col-4">
+          <b-card-title>{{ contestant.name }}</b-card-title>
+        </div>
+        <div class="col-8" style="text-align: right">
+          <button class="btn btn-primary" @click="subtractRose">-</button>
+          <img src="@/assets/rose.png" height="30" />
+          <span class="badge badge-danger">x {{ contestant.roses }}</span>
+          <button class="btn btn-primary" @click="addRose">+</button>
+        </div>
+      </div>
       <b-card-text>
         {{ contestant.age }}
         <br />
@@ -35,6 +45,12 @@ export default {
     },
     noRose() {
       this.$store.dispatch("disableContestant", this.contestant._id);
+    },
+    addRose() {
+      this.$store.dispatch("addRose", this.contestant._id);
+    },
+    subtractRose() {
+      this.$store.dispatch("subtractRose", this.contestant._id);
     },
   },
 };

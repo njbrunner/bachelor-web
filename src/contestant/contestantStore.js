@@ -41,6 +41,36 @@ const actions = {
             console.log(error); // eslint-disable-line no-console
         });
     },
+    addRose({ rootState, dispatch }, contestant_id) {
+        axios({
+            method: 'put',
+            url: 'https://bachelor-draft.herokuapp.com/contestant/rose/add/' + contestant_id,
+            headers: {
+                Authorization: 'Bearer ' + rootState.authStore.bachelorToken
+            }
+        })
+        .then(() => {
+            dispatch('fetchContestants');
+        })
+        .catch(error => {
+            console.log(error); // eslint-disable-line no-console
+        });
+    },
+    subtractRose({ rootState, dispatch }, contestant_id) {
+        axios({
+            method: 'put',
+            url: 'https://bachelor-draft.herokuapp.com/contestant/rose/subtract/' + contestant_id,
+            headers: {
+                Authorization: 'Bearer ' + rootState.authStore.bachelorToken
+            }
+        })
+        .then(() => {
+            dispatch('fetchContestants');
+        })
+        .catch(error => {
+            console.log(error); // eslint-disable-line no-console
+        });
+    },
     resetDraft({ rootState, dispatch }) {
         axios({
             method: 'put',
