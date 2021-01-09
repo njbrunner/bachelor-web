@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div v-if="players">
-      <h3>Standings</h3>
+      <h3 class="header title">Standings</h3>
 
-      <table class="table">
-        <thead>
+      <table class="table table-striped">
+        <thead class="heading">
           <th scope="col">Team</th>
           <th scope="col">Total Roses</th>
           <th scope="col">Remaining Contestants</th>
@@ -106,4 +106,12 @@ export default {
   },
 };
 </script>
-<style></style>
+<style scoped>
+.heading {
+  color: var(--primary);
+}
+
+.title {
+  margin-bottom: 32px;
+}
+</style>

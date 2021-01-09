@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar></NavBar>
-    <router-view></router-view>
+    <router-view class="app"></router-view>
     <div class="footer">
       <div class="row">
         <div class="col-md-4"></div>
@@ -43,13 +43,8 @@ export default {
 <style lang="scss">
 @import "./assets/bachelorTheme.scss";
 
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.app {
+  margin-top: 80px;
 }
 
 .fancy-script {

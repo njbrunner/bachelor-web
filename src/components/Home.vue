@@ -185,27 +185,9 @@ export default {
   margin-top: 60px;
 }
 
-.styled-image {
-  border: lightgray 1px solid;
-}
-
-.styled-paragraph {
-  border: lightgray 1px solid;
-  padding: 15px;
-  margin-top: 30px;
-}
-
 .styled-card {
   margin-left: 10px;
   margin-right: 10px;
-}
-
-.styled-start-draft-button {
-  color: white !important;
-  position: absolute;
-  right: 0;
-  margin-right: 15px;
-  margin-top: 15px;
 }
 
 .styled-header {

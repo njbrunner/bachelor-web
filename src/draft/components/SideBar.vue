@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="sidebar">
     <div class="draft-control">
       <div class="row">
         <div class="col-md-4">
@@ -114,6 +114,9 @@ export default {
 };
 </script>
 <style>
+.sidebar {
+  position: fixed;
+}
 .draft-control {
   background-color: lightgrey;
   padding: 16px;
