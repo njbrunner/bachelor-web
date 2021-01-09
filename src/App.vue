@@ -4,14 +4,15 @@
     <router-view class="app"></router-view>
     <div class="footer">
       <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-          <a href="https://njbrunner.com" target="_blank">BRÜ Development</a>
+        <div class="col-md-6">
+          <div class="footer-left">
+            <a href="https://njbrunner.com" target="_blank">BRÜ Development</a>
+          </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="footer-right">
             <img src="@/assets/rose.png" height="20px" />
-            made by
+            by
             <a
               href="https://www.flaticon.com/free-icon/rose_803106?related_item_id=803106&term=rose&related_item_id=803106"
               title="Those Icons"
@@ -64,5 +65,10 @@ export default {
 .footer-right {
   text-align: right;
   padding-right: 16px;
+}
+
+.footer-left {
+  text-align: left;
+  padding-left: 16px;
 }
 </style>
