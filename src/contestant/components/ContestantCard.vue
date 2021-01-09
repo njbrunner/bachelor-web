@@ -6,6 +6,7 @@
       tag="article"
       style="width: 300px;"
       class="mb-2 styled-card"
+      :class="{ shadow: contestant.active }"
     >
       <div class="row">
         <div class="col-6">
@@ -47,10 +48,15 @@ export default {
   margin-left: 10px;
   margin-right: 10px;
   color: var(--primary);
+  /* border: 1px solid var(--primary); */
 }
 
 .contestant-card-name {
   color: var(--primary);
+}
+
+.shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .notActive {
@@ -62,7 +68,7 @@ export default {
   top: 0;
   left: 0;
   left: 0;
-  bottom: 0;
+  /* bottom: 0; */
   opacity: 0.75;
   border-radius: 1px;
 }

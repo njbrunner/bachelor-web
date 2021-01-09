@@ -38,7 +38,12 @@
         </div>
       </div>
     </div>
-    <button v-if="!isDrafting" class="btn btn-secondary" @click="resetDraft">
+    <button
+      v-if="!isDrafting"
+      class="btn btn-outline-secondary form-control"
+      style="margin-top: 16px; margin-bottom: 16px;"
+      @click="resetDraft"
+    >
       Reset Draft
     </button>
     <br />

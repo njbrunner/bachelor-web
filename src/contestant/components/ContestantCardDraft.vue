@@ -7,6 +7,7 @@
       tag="article"
       style="width: 300px;"
       class="mb-2 styled-card"
+      :class="{ shadow: contestant.active }"
     >
       <b-card-text>
         {{ contestant.age }}

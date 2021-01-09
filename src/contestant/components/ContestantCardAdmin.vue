@@ -6,6 +6,7 @@
       tag="article"
       style="width: 300px;"
       class="mb-2 styled-card"
+      :class="{ shadow: contestant.active }"
     >
       <div class="row">
         <div class="col-5">

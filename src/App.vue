@@ -45,6 +45,7 @@ export default {
 
 .app {
   margin-top: 80px;
+  margin-bottom: 60px;
 }
 
 .fancy-script {
