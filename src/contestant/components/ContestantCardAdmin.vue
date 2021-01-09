@@ -8,14 +8,20 @@
       class="mb-2 styled-card"
     >
       <div class="row">
-        <div class="col-4">
-          <b-card-title>{{ contestant.name }}</b-card-title>
+        <div class="col-5">
+          <h5>{{ contestant.name }}</h5>
         </div>
-        <div class="col-8" style="text-align: right">
+        <div class="col-7" style="text-align: right">
           <button class="btn btn-primary" @click="subtractRose">-</button>
           <img src="@/assets/rose.png" height="30" />
           <span class="badge badge-danger">x {{ contestant.roses }}</span>
-          <button class="btn btn-primary" @click="addRose">+</button>
+          <button
+            class="btn btn-primary"
+            @click="addRose"
+            style="margin-left: 8px"
+          >
+            +
+          </button>
         </div>
       </div>
       <b-card-text>
