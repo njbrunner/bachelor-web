@@ -47,7 +47,7 @@
       Reset Draft
     </button>
     <br />
-    <h3>Teams</h3>
+    <h3 class="heading">Teams</h3>
     <hr />
     <ul class="list-group">
       <li
@@ -144,5 +144,9 @@ export default {
 .list-group-item.active:focus {
   background-color: var(--primary);
   border-color: var(--primary);
+}
+
+.heading {
+  color: var(--primary);
 }
 </style>
