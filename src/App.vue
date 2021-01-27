@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="footer-left">
-            <a href="https://njbrunner.com" target="_blank">BRÜ Development</a>
+            <a href="https://njbrunner.com" target="_blank">BRÜ Development TEST</a>
           </div>
         </div>
         <div class="col-md-6">
