@@ -35,6 +35,14 @@
       <button class="btn btn-primary form-control" @click="noRose">
         No Rose
       </button>
+      <button
+        v-if="!contestant.drafted"
+        class="btn btn-primary form-control"
+        style="margin-top: 8px;"
+        @click="draftContestant"
+      >
+        Draft
+      </button>
       <div v-if="!contestant.active" class="notActive"></div>
     </b-card>
   </a>
@@ -59,6 +67,9 @@ export default {
     subtractRose() {
       this.$store.dispatch("subtractRose", this.contestant._id);
     },
+    draftContestant() {
+      this.$emit("onDraftContestant");
+    }
   },
 };
 </script>
