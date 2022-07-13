@@ -49,7 +49,7 @@ export default {
       this.$emit("closeModal");
     },
     saveNewTeam() {
-      let teamData = { teamName: this.teamName, teamOwner: this.teamOwner };
+      let teamData = { name: this.teamName, owner: this.teamOwner };
       this.$emit("saveNewTeam", teamData);
     },
   },

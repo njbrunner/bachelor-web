@@ -97,8 +97,8 @@ export default {
       this.showAddTeamModal = false;
       this.showTeamModal = false;
     },
-    handleSaveNewTeam(teamName) {
-      this.$store.dispatch("addTeam", teamName);
+    handleSaveNewTeam(teamData) {
+      this.$store.dispatch("addTeam", teamData);
       this.handleCloseModal();
     },
     handleRemoveTeam(teamId) {
