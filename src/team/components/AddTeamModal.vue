@@ -19,6 +19,10 @@
                   <label for="name">Team Name:</label>
                   <input type="text" class="form-control" v-model="teamName" />
                 </div>
+                <div class="form-group">
+                  <label for="name">Team Owner(s):</label>
+                  <input type="text" class="form-control" v-model="teamOwner" />
+                </div>
               </form>
             </div>
             <div class="modal-footer">
@@ -37,6 +41,7 @@ export default {
   data() {
     return {
       teamName: undefined,
+      teamOwner: undefined,
     };
   },
   methods: {
@@ -44,7 +49,8 @@ export default {
       this.$emit("closeModal");
     },
     saveNewTeam() {
-      this.$emit("saveNewTeam", this.teamName);
+      let teamData = { teamName: this.teamName, teamOwner: this.teamOwner };
+      this.$emit("saveNewTeam", teamData);
     },
   },
 };

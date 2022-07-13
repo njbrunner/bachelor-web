@@ -14,7 +14,7 @@ const actions = {
     fetchTeams({ commit }) {
         axios({
             method: 'get',
-            url: 'https://bachelor-draft.herokuapp.com/player/'
+            url: 'https://bachelor-draft.herokuapp.com/team/'
         })
         .then(response => {
             commit('updateTeams', response.data.data);
@@ -27,7 +27,7 @@ const actions = {
         commit('updateTeams', teams);
     },
     addTeam({ dispatch }, teamName) {
-        axios.post('https://bachelor-draft.herokuapp.com/player/new', {"name": teamName})
+        axios.post('https://bachelor-draft.herokuapp.com/team/new', {"name": teamName})
         .then(() => {
             dispatch('fetchTeams');
         })
@@ -36,7 +36,7 @@ const actions = {
         });
     },
     removeTeam({ dispatch }, teamId) {
-        axios.delete('https://bachelor-draft.herokuapp.com/player/remove/' + teamId)
+        axios.delete('https://bachelor-draft.herokuapp.com/team/remove/' + teamId)
         .then(() => {
             dispatch('fetchTeams');
         })
@@ -45,7 +45,7 @@ const actions = {
         });
     },
     shuffleTeams({ dispatch }) {
-        axios.put('https://bachelor-draft.herokuapp.com/player/shuffle')
+        axios.put('https://bachelor-draft.herokuapp.com/team/shuffle')
         .then(() => {
             dispatch('fetchTeams');
         })
@@ -54,7 +54,7 @@ const actions = {
         });
     },
     draftContestant({ dispatch }, payload) {
-        axios.put('https://bachelor-draft.herokuapp.com/player/draft/' + payload.teamId, {"contestant_id": payload.contestantId})
+        axios.put('https://bachelor-draft.herokuapp.com/team/draft/' + payload.teamId, {"contestant_id": payload.contestantId})
         .then(() => {
             dispatch('fetchContestants');
             dispatch('fetchTeams');
