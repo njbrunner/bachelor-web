@@ -15,7 +15,7 @@
       </div>
       <div class="col-md-3">
         <sidebar
-          :players="teams"
+          :teams="teams"
           :isDrafting="isDrafting"
           :currentDraftPosition="currentDraftPosition"
           @onAddTeamClicked="handleAddTeamClicked"
@@ -75,7 +75,7 @@ export default {
     teams() {
       return this.$store.getters.getAllTeams;
     },
-    currentDraftPlayer() {
+    currentDraftTeam() {
       return this.teams[this.currentDraftPosition];
     },
   },
@@ -119,7 +119,7 @@ export default {
     },
     handleDraftContestant(contestant) {
       this.$store.dispatch("draftContestant", {
-        teamId: this.currentDraftPlayer._id,
+        teamId: this.currentDraftTeam._id,
         contestantId: contestant._id,
       });
       this.movePositions();

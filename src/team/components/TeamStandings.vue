@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-if="players">
+    <div v-if="teams">
       <h3 class="header title">Standings</h3>
 
       <table class="table table-striped">
@@ -42,7 +42,6 @@ export default {
   },
   data() {
     return {
-      players: [],
       clickedTeam: null,
       showTeamModal: false,
     };
@@ -87,7 +86,6 @@ export default {
       return totalRoses;
     },
     compare(aTeam, bTeam) {
-      // console.log(aPlayer); // eslint-disable-line no-console
       const aTeamTotalRoses = this.getTotalRoses(aTeam);
       const bTeamTotalRoses = this.getTotalRoses(bTeam);
 

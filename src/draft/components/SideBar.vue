@@ -53,18 +53,18 @@
       <li
         class="list-group-item"
         :class="{ active: isActive(index) }"
-        v-for="(player, index) in players"
+        v-for="(team, index) in teams"
         :key="index"
       >
         <div class="flex-container">
-          <h4 style="flex-grow: 8">{{ player.name }}</h4>
-          <button class="btn btn-primary" @click="viewTeam(player)">
+          <h4 style="flex-grow: 8">{{ team.name }}</h4>
+          <button class="btn btn-primary" @click="viewTeam(team)">
             View Team
           </button>
           <button
             class="btn btn-outline-primary"
             v-if="!isDrafting"
-            @click="removePlayer(player)"
+            @click="removeTeam(team)"
           >
             <i class="material-icons">delete_outline</i>
           </button>
@@ -77,19 +77,19 @@
 export default {
   name: "SideBar",
   components: {},
-  props: ["drafting", "currentDraftPosition", "players", "isDrafting"],
+  props: ["drafting", "currentDraftPosition", "teams", "isDrafting"],
   computed: {
-    sortedPlayers() {
-      const players = this.players.slice();
-      return players.sort(this.compare);
+    sortedTeams() {
+      const teams = this.teams.slice();
+      return teams.sort(this.compare);
     },
   },
   methods: {
     addTeamClicked() {
       this.$emit("onAddTeamClicked");
     },
-    viewTeam(player) {
-      this.$emit("onViewTeam", player);
+    viewTeam(team) {
+      this.$emit("onViewTeam", team);
     },
     isActive(index) {
       if (this.isDrafting) {
@@ -99,8 +99,8 @@ export default {
       }
       return false;
     },
-    removePlayer(player) {
-      this.$emit("onRemoveTeam", player._id);
+    removeTeam(team) {
+      this.$emit("onRemoveTeam", team._id);
     },
     shuffleTeams() {
       this.$store.dispatch("shuffleTeams");
