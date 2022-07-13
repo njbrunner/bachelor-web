@@ -28,9 +28,8 @@ const actions = {
     commit("updateTeams", teams);
   },
   addTeam({ dispatch }, teamData) {
-    // axios.post('https://bachelor-draft.herokuapp.com/team/new', {teamData})
     axios
-      .post("http://127.0.0.1:5000/team/new", {
+      .post("https://bachelor-draft.herokuapp.com/team/new", {
         name: teamData.name,
         owner: teamData.owner,
       })
