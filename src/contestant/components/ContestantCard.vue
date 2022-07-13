@@ -48,7 +48,7 @@ export default {
   margin-left: 10px;
   margin-right: 10px;
   color: var(--primary);
-  /* border: 1px solid var(--primary); */
+  cursor: pointer;
 }
 
 .contestant-card-name {
