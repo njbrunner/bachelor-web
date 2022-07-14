@@ -41,7 +41,7 @@
     <button
       v-if="!isDrafting"
       class="btn btn-outline-secondary form-control"
-      style="margin-top: 16px; margin-bottom: 16px;"
+      style="margin-top: 16px; margin-bottom: 16px"
       @click="resetDraft"
     >
       Reset Draft
@@ -81,7 +81,6 @@ export default {
   computed: {
     sortedTeams() {
       const teams = this.teams.slice();
-      console.log(teams);  // eslint-disable-line no-console
       return teams.sort(this.compare);
     },
   },
@@ -104,8 +103,7 @@ export default {
       this.$emit("onRemoveTeam", team._id);
     },
     shuffleTeams() {
-      console.log(this.teams); // eslint-disable-line no-console
-      // this.$store.dispatch("shuffleTeams");
+      this.$store.dispatch("shuffleTeams");
     },
     startDraft() {
       this.$emit("onStartDraft");

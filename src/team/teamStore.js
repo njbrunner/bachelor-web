@@ -17,7 +17,6 @@ const actions = {
       url: "https://bachelor-draft.herokuapp.com/team/",
     })
       .then((response) => {
-        console.log(response.data.data); // eslint-disable-line no-console
         commit("updateTeams", response.data.data);
       })
       .catch((error) => {

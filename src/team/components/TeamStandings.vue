@@ -71,7 +71,7 @@ export default {
     },
     getTeamPoints(team) {
       var activeMembers = 0;
-      for (const member of team.team) {
+      for (const member of team.team_members) {
         if (member.active) {
           activeMembers += 1;
         }
@@ -80,7 +80,7 @@ export default {
     },
     getTotalRoses(team) {
       let totalRoses = 0;
-      for (const member of team.team) {
+      for (const member of team.team_members) {
         totalRoses += member.roses;
       }
       return totalRoses;

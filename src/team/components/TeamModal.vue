@@ -37,7 +37,7 @@
 
               <div class="row">
                 <contestant-card
-                  v-for="(contestant, index) in team.team"
+                  v-for="(contestant, index) in team.team_members"
                   :key="index"
                   :contestant="contestant"
                 ></contestant-card>
@@ -67,7 +67,7 @@ export default {
     },
     getTeamPoints() {
       var activeMembers = 0;
-      for (const member of this.team.team) {
+      for (const member of this.team.team_members) {
         if (member.active) {
           activeMembers += 1;
         }
@@ -76,7 +76,7 @@ export default {
     },
     getTotalRoses() {
       let totalRoses = 0;
-      for (const member of this.team.team) {
+      for (const member of this.team.team_members) {
         totalRoses += member.roses;
       }
       return totalRoses;
